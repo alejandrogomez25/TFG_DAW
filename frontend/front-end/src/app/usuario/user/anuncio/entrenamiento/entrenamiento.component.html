@@ -1,0 +1,43 @@
+<body>
+  <div class="grid">
+    <div class="col-12"><app-header-usuario></app-header-usuario></div><div class="col-2 sidebar">    <app-sidebar-anuncio (citySelected)="onCitySelected($event)" (dateSelected)="onDateSelected($event)"(limpiarFiltrosClick)="limpiarFiltros()"></app-sidebar-anuncio>
+    </div>
+    <div class="col-10">
+      <h1 class="mt-6">ENTRENAMIENTO DE MASCOTAS</h1>
+    
+      <ng-container *ngFor="let anuncio of anunciosMostrados">
+        <div class="anuncio" *ngIf="!anuncio.usuarioReserva">
+          <div class="row anuncio-header">
+            <div class="col-fixed">
+              <img alt="Card" [src]="'http://localhost:8080/api/img/' + anuncio.autor.foto_perfil" class="profile-img" />
+            </div>
+            <div class="col-6">
+              <h2>{{ anuncio.autor.nombre + ' ' + anuncio.autor.apellido1 + ' ' + anuncio.autor.apellido2 }}</h2>
+              <p>{{ anuncio.autor.ciudad }}, {{ anuncio.fecha}}</p>
+            </div>
+            <div class="col-4 anuncio-price" >
+              <h2>{{ anuncio.precio + "€" }}</h2>
+            </div>
+          </div>
+          <div class="row anuncio-content">
+            <div class="col-8">
+              <p>{{ anuncio.descripcion }}</p>
+            </div>
+            <div class="col-4 anuncio-action">
+              <p>{{ anuncio.hora_inicio }} - {{ anuncio.hora_fin }}</p>
+              <p-button label="Reservar" (click)="reservar(anuncio)" icon="pi pi-calendar-plus" styleClass="p-button-raised p-button-success"></p-button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div *ngIf="anunciosMostrados.length > 0">
+        <p-paginator [rows]="10" [totalRecords]="totalAnuncios" (onPageChange)="paginar($event)"></p-paginator>
+      </div>
+    </div>
+    
+    <p-toast></p-toast>
+    <p-confirmDialog />
+  </div>
+
+</body>
+<router-outlet></router-outlet>

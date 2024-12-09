@@ -1,0 +1,9 @@
+<p-menubar styleClass="custom-menubar" [model]="menuItems || []">
+  <button pButton type="button" icon="pi pi-home" ></button>
+  <ng-template pTemplate="end">
+    <div class="p-toolbar-group-right">
+      <h2 class="p-toolbar-title" style="margin-right: 20px;">{{ usuario?.nombre }}</h2>       
+    </div>
+  </ng-template>
+</p-menubar>
+<router-outlet></router-outlet>

@@ -1,0 +1,32 @@
+<body>
+    <header class="header">
+      <app-header-usuario></app-header-usuario>
+    </header>
+    <div class="anuncios-container">
+      <h1>Mis reservas</h1>
+      <div *ngFor="let anuncio of anuncios" class="anuncio-card">
+        <div class="anuncio-header">
+          <div>
+            <h2>{{ anuncio.fecha | date: 'dd-MM-yyyy' }}</h2>
+            <h3>{{ anuncio.hora_inicio }} - {{ anuncio.hora_fin }}</h3> 
+            <span>{{ anuncio.autor.ciudad }}</span>
+          </div>
+          <p-button (click)="toggleDetails(anuncio)" class="toggle-button">
+            {{ anuncio.showDetails ? 'Ocultar detalles' : 'Mostrar detalles' }}
+          </p-button>
+        </div>
+        <div *ngIf="anuncio.showDetails" class="anuncio-details">
+          <h3>Detalles del cuidador:</h3>
+          <p>Nombre: {{ anuncio.autor.nombre }} {{ anuncio.autor.apellido1 }} {{ anuncio.autor.apellido2 }}</p>
+          <p>Dirección: {{ anuncio.autor.direccion }}</p>
+          <p>Ciudad: {{ anuncio.autor.ciudad }}</p>
+          <p>Teléfono de contacto: {{ anuncio.autor.telefono }}</p>
+          <p-button class="mr-4" (click)="cancelarReserva(anuncio)">Cancelar servicio</p-button>
+        </div>
+      </div>
+    </div>
+    <p-toast></p-toast>
+    <p-confirmDialog />
+    <router-outlet></router-outlet>
+  </body>
+  

@@ -1,0 +1,55 @@
+<app-header-admin></app-header-admin>
+<div style="display: flex; justify-content: space-between;">
+  <h2>Gestión de mascotas</h2>
+  <button pButton type="button" label="Añadir mascota" icon="pi pi-plus" [routerLink]="['/admin/crearMascota']" [ngStyle]="{ 'margin-left': 'auto' }"></button>
+</div>
+
+<p-table [value]="mascotas">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Tipo</th>
+      <th>Raza</th>
+      <th>Peso</th>
+      <th>Edad</th>
+      <th>Sexo</th>
+      <th>Descripción</th>
+      <th>Cuidados</th>
+      <th>Foto</th>
+      <th>ID Usuario</th> 
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-mascota>
+    <tr>
+      <td>{{ mascota.idMascota }}</td>
+      <td>{{ mascota.nombre }}</td>
+      <td>{{ mascota.tipo_mascota }}</td>
+      <td>{{ mascota.raza }}</td>
+      <td>{{ mascota.peso }}</td>
+      <td>{{ mascota.edad }}</td>
+      <td>{{ mascota.sexo }}</td>
+      <td>{{ mascota.descripcion }}</td>
+      <td>{{ mascota.cuidados }}</td>
+      <td>
+        <img *ngIf="mascota.foto1" [src]="'http://localhost:8080/api/img/' + mascota.foto1" width="100">
+      </td>
+      <td>{{ mascota.idUsuario }}</td> 
+      <td>
+        <button pButton type="button" class="but" icon="pi pi-pencil" (click)="editarMascota(mascota)"></button>
+        <button pButton type="button" class="but" icon="pi pi-trash" (click)="eliminarMascota(mascota.idMascota)"></button>
+      </td>
+    </tr>
+  </ng-template>
+  
+</p-table>
+<app-modal-admin-mascota  [visible]="displayModal" [mascotaSeleccionada]="mascota" (close)="displayModal = false;" (mascotaActualizada)="loadMascotas()"></app-modal-admin-mascota>
+
+<p-paginator 
+  [first]="first" 
+  [rows]="rows" 
+  [totalRecords]="mascotas.length" 
+  (onPageChange)="onPageChange($event)">
+</p-paginator>
+<router-outlet></router-outlet>

@@ -1,0 +1,62 @@
+<app-header-admin></app-header-admin>
+<div style="display: flex; justify-content: space-between;">
+  <h2>Gestión de usuarios</h2>
+  <button pButton type="button" label="Añadir usuario" icon="pi pi-plus"  [routerLink]="['/admin/crearUsuario']" [ngStyle]="{ 'margin-left': 'auto' }"></button>
+</div>
+
+<p-table [value]="pagedUsuarios">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Apellido 1</th>
+      <th>Apellido 2</th>
+      <th>Dirección</th>
+      <th>Ciudad</th>
+      <th>Código Postal</th>
+      <th>Email</th>
+      <th>Fecha de Nacimiento</th>
+      <th>Teléfono</th>
+      <th>Biografía</th>
+      <th>Contraseña</th>
+      <th>Rol</th>
+      <th>Foto</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-usuario>
+    <tr>
+      <td>{{ usuario.idUsuario }}</td>
+      <td>{{ usuario.nombre }}</td>
+      <td>{{ usuario.apellido1 }}</td>
+      <td>{{ usuario.apellido2 }}</td>
+      <td>{{ usuario.direccion }}</td>
+      <td>{{ usuario.ciudad }}</td>
+      <td>{{ usuario.cp }}</td>
+      <td>{{ usuario.email }}</td>
+      <td>{{ usuario.fecha_nacimiento | date: 'yyyy-MM-dd' }}</td>
+      <td>{{ usuario.telefono }}</td>
+      <td>{{ usuario.biografia }}</td>
+      <td>**********</td>
+      <td>{{ usuario.rol }}</td>
+      <td>
+        <img *ngIf="usuario.foto_perfil" [src]="'http://localhost:8080/api/img/' + usuario.foto_perfil" width="100">
+      </td>
+      <td>
+        <button pButton type="button" class="but" icon="pi pi-user-edit" (click)="editarUsuario(usuario)"></button>
+        <button pButton type="button" class="but" icon="pi pi-user-minus" (click)="eliminarUsuario(usuario.idUsuario)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-paginator 
+  [first]="first" 
+  [rows]="rows" 
+  [totalRecords]="usuarios.length" 
+  [rowsPerPageOptions]="[10, 20, 30]" 
+  (onPageChange)="onPageChange($event)">
+</p-paginator>
+
+<app-modal-admin-usuario [visible]="displayModal" [usuarioAux]="usuario" (close)="displayModal = false; usuario=null;" (perfilActualizado)="actualizarPerfil()"></app-modal-admin-usuario>
+<router-outlet></router-outlet>

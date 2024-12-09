@@ -1,0 +1,70 @@
+html, body {
+    height: 100%; 
+    margin: 0;
+    padding: 0; 
+  }
+  
+  body {
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden; 
+  }
+  
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../../../img/fondo1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5; 
+    z-index: -1; 
+  }
+  
+  header {
+    flex-shrink: 0;
+    width: 100%;
+  }
+  
+  .anuncios-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+    width: 100%;
+  }
+  
+  .anuncio-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 16px;
+    margin: 16px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 60%;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .anuncio-header {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .anuncio-details {
+    margin-top: 16px;
+    padding: 16px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+
