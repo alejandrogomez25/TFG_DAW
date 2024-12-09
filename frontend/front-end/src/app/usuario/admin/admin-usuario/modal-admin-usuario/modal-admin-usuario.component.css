@@ -1,0 +1,70 @@
+.d-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .form-container {
+    width: 60%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+  
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .field {
+    flex: 1 1 30%;
+    margin-right: 1rem;
+  }
+  
+  .field:last-child {
+    margin-right: 0;
+  }
+  
+  input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+  }
+  
+  textarea {
+    height: 100px;
+  }
+  
+  input[type="file"] {
+    display: none;
+  }
+  
+  
+  
+  .current-photo-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .current-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 1px solid #fdd004;
+    margin-bottom: 20px;
+  }
+  
+  

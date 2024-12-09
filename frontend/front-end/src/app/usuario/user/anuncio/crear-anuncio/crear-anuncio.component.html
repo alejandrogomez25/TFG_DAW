@@ -1,0 +1,41 @@
+<body>
+  <app-header-usuario></app-header-usuario>
+  <div class="container">
+    <h1>Añadir Anuncio</h1>
+    <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <div class="formgrid grid">
+        <div class="field col-6 md:col-6">
+          <label for="tipo_anuncio">Tipo de Anuncio</label>
+          <select id="tipo_anuncio" [(ngModel)]="nuevoAnuncio.tipo" name="tipo_anuncio" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            <option *ngFor="let tipo of tiposAnuncio" [value]="tipo">{{ tipo }}</option>
+          </select>
+        </div>
+        <div class="field col-6">
+          <label for="precio">Precio</label>
+          <input id="precio" type="number" [(ngModel)]="nuevoAnuncio.precio" name="precio" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+        <div class="field col-4 md:col-4">
+          <label for="fecha">Fecha</label>
+          <input id="fecha" type="date" [(ngModel)]="nuevoAnuncio.fecha" name="fecha" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" [min]="minDate.toISOString().split('T')[0]">
+        </div>
+        <div class="field col-4 md:col-4">
+          <label for="hora_inicio">Hora Inicio</label>
+          <input id="hora_inicio" type="time" [(ngModel)]="nuevoAnuncio.hora_inicio" name="hora_inicio" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" (ngModelChange)="validarHora()">
+        </div>
+        <div class="field col-4 md:col-4">
+          <label for="hora_fin">Hora Fin</label>
+          <input id="hora_fin" type="time" [(ngModel)]="nuevoAnuncio.hora_fin" name="hora_fin" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" (ngModelChange)="validarHora()">
+        </div>
+        <div class="field col-12">
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcion" [(ngModel)]="nuevoAnuncio.descripcion" name="descripcion" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" style="max-height: 100px;"></textarea>
+        </div>
+        <div class="field col-12">
+          <p-button label="Añadir Anuncio" class="col-6 mr-3" type="submit" [disabled]="!FormValid"></p-button>
+          <p-button label="Cancelar" class="col-6" routerLink="/usuario/misanuncios"></p-button>
+        </div>
+      </div>
+    </form>
+    <p-toast></p-toast>
+  </div>
+</body>

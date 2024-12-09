@@ -1,0 +1,65 @@
+<p-dialog header="Editar Mascota" [(visible)]="visible" (onHide)="cancelar()" [style]="{ width: '50vw' }">
+  <div *ngIf="visible" class="modal">
+    <div class="container">
+      <form *ngIf="mascotaSeleccionada" (ngSubmit)="guardarCambios()" enctype="multipart/form-data">
+        <div class="formgrid grid">
+          <div class="field col-12 md:col-6">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" [(ngModel)]="mascotaSeleccionada.nombre" name="nombre" required>
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="tipoMascota">Tipo de Mascota</label>
+            <select id="tipoMascota" class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary" [(ngModel)]="mascotaSeleccionada.tipo_mascota" name="tipoMascota" required>
+              <option value="">Selecciona un tipo de mascota</option>
+              <option *ngFor="let tipo of tiposMascotas" [value]="tipo">{{ tipo }}</option>
+            </select>
+          </div>
+
+          <div class="field col-12">
+            <label for="raza">Raza</label>
+            <select id="raza" class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary" [(ngModel)]="mascotaSeleccionada.raza" name="raza" required>
+              <option value="">Selecciona una raza</option>
+              <option *ngFor="let raza of razasPorTipo[tiposMascotas.indexOf(mascotaSeleccionada.tipo_mascota)]" [value]="raza">{{ raza }}</option>
+            </select>
+          </div>
+
+          <div class="field col-4 md:col-4">
+            <label for="peso">Peso (kg)</label>
+            <input id="peso" type="number" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" [(ngModel)]="mascotaSeleccionada.peso" name="peso" required>
+          </div>
+
+          <div class="field col-4 md:col-4">
+            <label for="edad">Edad (años)</label>
+            <input id="edad" type="number" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" [(ngModel)]="mascotaSeleccionada.edad" name="edad" required>
+          </div>
+
+          <div class="field col-4 md:col-4">
+            <label for="sexo">Sexo</label>
+            <select id="sexo" class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary" [(ngModel)]="mascotaSeleccionada.sexo" name="sexo" required>
+              <option value="">Selecciona el sexo</option>
+              <option value="Macho">Macho</option>
+              <option value="Hembra">Hembra</option>
+            </select>
+          </div>
+
+          <div class="field col-6">
+            <label for="descripcion">Descripción</label>
+            <textarea id="descripcion" class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary" [(ngModel)]="mascotaSeleccionada.descripcion" name="descripcion" required style="max-height: 100px;"></textarea>
+          </div>
+
+          <div class="field col-6">
+            <label for="cuidados">Cuidados</label>
+            <textarea id="cuidados" class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary" [(ngModel)]="mascotaSeleccionada.cuidados" name="cuidados" required style="max-height: 100px;"></textarea>
+          </div>
+
+          <div class="field col-12">
+            <input id="foto" type="file" (change)="onFileSelected($event)">
+            <label for="foto" class="custom-file-upload">Seleccionar archivo</label>
+          </div>
+        </div>
+        <button type="submit" class="w-full text-white bg-primary p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary">Guardar Cambios</button>
+      </form>
+    </div>
+  </div>
+</p-dialog>

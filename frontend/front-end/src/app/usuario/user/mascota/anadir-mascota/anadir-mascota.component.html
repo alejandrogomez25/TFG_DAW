@@ -1,0 +1,76 @@
+
+<body><app-header-usuario></app-header-usuario>
+<div class="container">
+    <h1>Añadir mascota</h1>
+    <form #form="ngForm" (ngSubmit)="form.valid && enviar(form)" enctype="multipart/form-data">
+        <div class="formgrid grid">
+            <div class="field col-12 md:col-6">
+                <label for="nombre">Nombre</label>
+                <input id="nombre" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" [(ngModel)]="nuevaMascota.nombre" name="nombre" required>
+                <div *ngIf="form.submitted && !nuevaMascota.nombre" class="error-message">*Nombre es requerido</div>
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="tipoMascota">Tipo de mascota</label>
+                <select id="tipoMascota" class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary" (change)="onTipoMascotaChange($event)" [(ngModel)]="nuevaMascota.tipo_mascota" name="tipo_mascota" required>
+                    <option value="">Selecciona un tipo de mascota</option>
+                    <option *ngFor="let tipo of tiposMascotas" [value]="tipo">{{ tipo }}</option>
+                </select>
+                <div *ngIf="form.submitted && !nuevaMascota.tipo_mascota" class="error-message">*Tipo de mascota es requerido</div>
+            </div>
+            <div class="field col-12">
+                <label for="raza">Raza</label>
+                <select id="raza" class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary" (change)="onRazaChange($event)" [(ngModel)]="nuevaMascota.raza" name="raza" required>
+                    <option value="">Selecciona una raza</option>
+                    <option *ngFor="let raza of razasPorTipo[tiposMascotas.indexOf(tipoMascotaSeleccionada)]" [value]="raza">{{ raza }}</option>
+                </select>
+                <div *ngIf="form.submitted && !nuevaMascota.raza" class="error-message">*Raza es requerida</div>
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="peso">Peso (kg)</label>
+                <input id="peso" type="number" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" [(ngModel)]="nuevaMascota.peso" name="peso" required>
+                <div *ngIf="form.submitted && !nuevaMascota.peso" class="error-message">*Peso es requerido</div>
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="edad">Edad (años)</label>
+                <input id="edad" type="number" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" [(ngModel)]="nuevaMascota.edad" name="edad" required>
+                <div *ngIf="form.submitted && !nuevaMascota.edad" class="error-message">*Edad es requerida</div>
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="sexo">Sexo</label>
+                <select id="sexo" class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary" [(ngModel)]="nuevaMascota.sexo" name="sexo" required>
+                    <option value="">Selecciona el sexo</option>
+                    <option value="Macho">Macho</option>
+                    <option value="Hembra">Hembra</option>
+                </select>
+                <div *ngIf="form.submitted && !nuevaMascota.sexo" class="error-message">*Sexo es requerido</div>
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="foto">Foto de la mascota:</label>
+                <p-fileUpload 
+                mode="basic" 
+                chooseLabel="Foto de la mascota" 
+                chooseIcon="pi pi-upload"
+                accept="image/*" 
+                (onSelect)="onFileSelected($event)">
+            </p-fileUpload>
+            <div *ngIf="form.submitted && !selectedFile" class="error-message">*Foto de la mascota es requerida</div>
+            </div>
+            <div class="field col-6">
+                <label for="descripcion">Descripción</label>
+                <textarea id="descripcion" rows="4" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" [(ngModel)]="nuevaMascota.descripcion" name="descripcion" required style="max-height: 100px;"></textarea>
+                <div *ngIf="form.submitted && !nuevaMascota.descripcion" class="error-message">*Descripción es requerida</div>
+            </div>
+            <div class="field col-6">
+                <label for="cuidados">Cuidados</label>
+                <textarea id="cuidados" rows="4" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" [(ngModel)]="nuevaMascota.cuidados" name="cuidados" required style="max-height: 100px;"></textarea>
+                <div *ngIf="form.submitted && !nuevaMascota.cuidados" class="error-message">*Cuidados son requeridos</div>
+            </div>
+            <div class="field col-12">
+                <p-button label="Añadir mascota" class="col-6 mr-3" type="submit"></p-button>
+                <p-button label="Cancelar" class="col-6 " routerLink="/usuario/mismascotas"></p-button>
+            </div>
+        </div>
+    </form>
+    <p-toast></p-toast>
+</div>
+</body>

@@ -1,0 +1,67 @@
+.anuncio {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 8;
+}
+
+.anuncio .row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.anuncio-header {
+  background-color: #8bc34a;
+  padding: 20px;
+  color: white;
+}
+
+.anuncio-content {
+  padding: 20px;
+}
+
+.profile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.anuncio-price {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.anuncio-price h1 {
+  margin: 0;
+}
+
+.anuncio-action {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.button-container {
+  width: 100%;
+  margin-top: 10px; 
+}
+
+button {
+  width: fit-content; 
+}
+
+
+@media screen and (max-width: 480px) {
+  .sidebar {
+    display: none; 
+  }
+
+  .col-10 {
+    width: 100%; 
+    margin: 5px;
+
+  }
+}

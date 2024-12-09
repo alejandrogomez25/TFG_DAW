@@ -1,0 +1,42 @@
+<body>
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <form #form="ngForm" (ngSubmit)="login(form)" class="login-form">
+      <p-card class="login-card">
+        <div class="text-center">
+          <img src="assets/file.png" alt="Image" class="login-logo">
+          <h1>Iniciar Sesión</h1>
+        </div>
+        <div class="field">
+          <input
+            placeholder="Email"
+            id="email"
+            type="email"
+            pInputText
+            name="email"
+            [(ngModel)]="creds.email"
+            class="inp"
+            required
+          />
+        </div>
+        <div class="field">
+          <input
+            id="password1"
+            name="password"
+            type="password"
+            [(ngModel)]="creds.password"
+            pInputText
+            class="inp"
+            placeholder="Contraseña"
+            required
+          />
+        </div>
+        <button pButton type="submit" label="Enviar" class="inp" [disabled]="!creds.email || !creds.password"></button>
+        <div class="mt-2">No eres miembro? <a routerLink="/registro">Registrate</a></div>
+      </p-card>
+    </form>
+    <p-toast></p-toast>
+    <router-outlet></router-outlet>
+    
+  </div>
+  
+</body>

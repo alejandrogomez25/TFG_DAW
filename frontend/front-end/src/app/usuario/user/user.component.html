@@ -1,0 +1,70 @@
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<app-header-usuario></app-header-usuario>
+
+<div class="grid grid-nogutter surface-section text-800">
+    <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
+        <section>
+            <span class="block text-6xl font-bold mb-1">¡Bienvenido a Hauriers!</span>
+            <div class="text-6xl text-primary font-bold mb-3">Cuidando a tus mascotas como se merecen</div>
+            <p class="mt-0 mb-4 text-700 line-height-3">En Hauriers nos preocupamos por el bienestar de tus mascotas. Ofrecemos servicios a domicilio para satisfacer todas sus necesidades, desde cuidado hasta paseos y entrenamiento. ¡Déjanos cuidar de tus compañeros peludos mientras tú te ocupas de lo demás!</p>
+            <button pButton pRipple label="Descubre más" type="button" class="mr-3 p-button-raised"  routerLink="/usuario/paseo"></button>
+            <button pButton pRipple label="Añade tu mascota!" type="button" class="p-button-outlined" routerLink="/usuario/anadir-mascota"></button>
+
+        </section>
+        
+    </div>
+    <div class="col-12 md:col-6 overflow-hidden">
+        <img src="/assets/fotoportada.jpg" class="md:ml-auto block md:h-full" style="clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%)"></div>
+<hr width="70%" >
+
+<div class="surface-section px-4 py-8 md:px-6 lg:px-8 text-center">
+    <div class="mb-3 font-bold text-3xl">
+        <span class="text-900">¡Una Solución para Todo!</span>
+        <span class="text-primary"> Descubre lo que podemos ofrecerte</span>
+    </div>
+    <div class="text-700 mb-6">En Hauriers nos esforzamos por brindarte una experiencia única. Conoce los puntos clave que hacen que nuestros servicios destaquen:</div>
+    <div class="grid">
+        <div class="col-12 md:col-4 mb-4 px-5">
+            <span class="p-2 shadow-2 mb-3 inline-block surface-card" style="border-radius: 10px">
+                <span class="material-symbols-outlined  text-primary">
+                    pet_supplies
+                    </span>
+            </span>
+            <div class="text-900 text-xl mb-3 font-medium">Cuidado de Mascotas</div>
+            <span class="text-700 line-height-3">Ofrecemos servicios especializados para el cuidado de mascotas, incluyendo paseos, cuidado en el hogar y entrenamientos personalizados, asegurando que tus mascotas estén felices y saludables en todo momento.</span>
+        </div>
+        <div class="col-12 md:col-4 mb-4 px-5">
+            <span class="p-2 shadow-2 mb-3 inline-block surface-card" style="border-radius: 10px">
+                <span class="material-symbols-outlined text-primary">
+                    sound_detection_dog_barking
+                    </span>
+            </span>
+            <div class="text-900 text-xl mb-3 font-medium">Amplia Variedad de Servicios</div>
+            <span class="text-700 line-height-3">Desde cuidadores de mascotas hasta servicios de adiestramiento y hospedaje, ofrecemos una amplia gama de servicios para satisfacer todas las necesidades de tus mascotas.</span>
+        </div>
+        <div class="col-12 md:col-4 mb-4 px-5">
+            <span class="p-2 shadow-2 mb-3 inline-block surface-card" style="border-radius: 10px">
+                <span class="material-symbols-outlined  text-primary" >
+                    support_agent
+                    </span>
+            </span>
+            <div class="text-900 text-xl mb-3 font-medium">Apoyo Global</div>
+            <span class="text-700 line-height-3">Nuestro equipo de soporte está disponible en todo momento para brindarte la asistencia que necesites, sin importar dónde te encuentres, garantizando una experiencia sin contratiempos.</span>
+        </div>
+        <div class="col-12 md:col-12 mb-4 px-5">
+            <span class="p-2 shadow-2 mb-3 inline-block surface-card" style="border-radius: 10px">
+                <span class="material-symbols-outlined text-primary">
+                    volunteer_activism
+                    </span>
+            </span>
+            <div class="text-900 text-xl mb-3 font-medium">Amor por los Animales</div>
+            <span class="text-700 line-height-3">Nos apasionan los animales tanto como a ti, por lo que nos esforzamos por ofrecer un servicio que refleje nuestro amor y dedicación hacia el cuidado y el bienestar de tus mascotas.</span>
+        </div>
+    </div>
+    <div><app-footer></app-footer></div>
+
+</div>
+
+
+<router-outlet></router-outlet>

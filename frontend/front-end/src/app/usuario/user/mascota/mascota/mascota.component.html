@@ -1,0 +1,31 @@
+<body>
+    <div class="header"><app-header-usuario></app-header-usuario></div>
+    <div class="container">
+        <h2>Tus mascotas</h2>
+        <p>Añade tus mascotas o modifica su información</p>
+
+        <div class="grid">
+            <div *ngFor="let masc of mascota" class="col-12 md:col-6 lg:col-3">
+                <p-card [header]="masc.nombre" [subheader]="masc.raza">
+                    <img [src]="'http://localhost:8080/api/img/' + masc.foto1" [alt]="masc.nombre" class="pet-image">
+                    <p>{{masc.edad}} años, {{masc.peso}} kg.</p>
+                    <div class="actions">
+                        <button pButton type="button" label="Editar" icon="pi pi-pencil" (click)="editar(masc)" class="p-button-rounded p-button-text"></button>
+                        <button pButton type="button" label="Borrar" icon="pi pi-trash " (click)="eliminar(masc)"  class="p-button-rounded p-button-text"></button>
+                    </div>
+                </p-card>
+            </div>
+
+            <div class="col-12 md:col-6 lg:col-3">
+                <div class="add-pet">
+                    <p-button icon="pi pi-plus" routerLink="/usuario/anadir-mascota" label="Añadir mascota" class="p-button-outlined"></p-button>
+                </div>
+            </div>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+    <p-toast></p-toast>
+    <p-confirmDialog></p-confirmDialog>
+    <app-modal-editar-mascota [visible]="displayModal" [mascotaSeleccionada]="mascotaSeleccionada" (close)="displayModal = false;" (mascotaActualizada)="actualizarMascotas()"></app-modal-editar-mascota>
+
+</body>

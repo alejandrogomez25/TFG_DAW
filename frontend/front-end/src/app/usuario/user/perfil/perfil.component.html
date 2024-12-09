@@ -1,0 +1,28 @@
+<body>
+    <div class="header"><app-header-usuario></app-header-usuario></div>
+    <div class="container">
+      <div class="profile-card" *ngIf="usuario">
+        <div class="profile-header">
+          <img [src]="'http://localhost:8080/api/img/' + usuario.foto_perfil"  class="profile-image">
+          <h2>{{ usuario.nombre }} {{ usuario.apellido1 }} {{ usuario.apellido2 }}</h2>
+          <p>{{ usuario.ciudad }}, {{ usuario.cp }}</p>
+        </div>
+        <div class="profile-body">
+          <h3>Información Personal</h3>
+          <ul>
+            <li><strong>Dirección:</strong> {{ usuario.direccion }}</li>
+            <li><strong>Correo Electrónico:</strong> {{ usuario.email }}</li>
+            <li><strong>Fecha de Nacimiento:</strong> {{ usuario.fecha_nacimiento | date: 'dd/MM/yyyy' }}</li>
+            <li><strong>Teléfono:</strong> {{ usuario.telefono }}</li>
+          </ul>
+          <h3>Biografía</h3>
+          <p>{{ usuario.biografia }}</p>
+          <button pButton label="Editar Perfil" icon="pi pi-pencil" (click)="editarPerfil()" class="edit-button"></button>
+        </div>
+      </div>
+      <app-modal-editar-perfil [visible]="displayModal" [usuario]="usuario" (close)="displayModal = false;" (perfilActualizado)="actualizarPerfil()"></app-modal-editar-perfil>
+
+      <router-outlet></router-outlet>
+    </div>
+  </body>
+  

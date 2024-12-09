@@ -1,0 +1,9 @@
+<div class="grid-container">
+  <div class="sidebar">
+    <h3>Filtros</h3>
+    <p-listbox [options]="ciudades" [(ngModel)]="selectedCity" (ngModelChange)="onCitySelect()" [filter]="true" [style]="{ width: '100%' }"></p-listbox>
+    <h4>Filtrar por Fecha</h4>
+    <p-calendar [(ngModel)]="selectedDate" (ngModelChange)="onDateSelect()" appendTo="body" [showIcon]="true" dateFormat="yy-mm-dd" [style]="{ width: '100%' }"></p-calendar>
+    <p-button label="Limpiar" (click)="limpiarFiltros()" icon="pi pi-refresh" styleClass="p-button-raised p-button-danger mt-2"></p-button>
+  </div>
+</div>

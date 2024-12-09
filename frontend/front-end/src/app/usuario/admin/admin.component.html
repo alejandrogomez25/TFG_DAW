@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<body>
+  <app-header-admin></app-header-admin>
+
+  <div id="admin-component">
+    <div class="cards-container">
+      <p-card styleClass="custom-card" [routerLink]="['/admin/usuarios']">
+        <div class="card-content">
+          <i class="pi pi-user"></i>
+          <h2>Usuarios</h2>
+        </div>
+      </p-card>
+      <p-card styleClass="custom-card" [routerLink]="['/admin/mascotas']">
+        <div class="card-content">
+          <span class="material-symbols-outlined">pets</span>
+          <h2>Mascotas</h2>
+        </div>
+      </p-card>
+      <p-card styleClass="custom-card" [routerLink]="['/admin/anuncios']">
+        <div class="card-content">
+          <i class="pi pi-bell"></i>
+          <h2>Anuncios</h2>
+        </div>
+      </p-card>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</body>

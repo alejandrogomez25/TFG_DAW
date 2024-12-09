@@ -1,0 +1,87 @@
+<body>
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="form-container">
+        <h1>Crear Usuario</h1>
+        <form #form="ngForm" (ngSubmit)="form.valid && crearUsuario(form)" enctype="multipart/form-data">
+          <div class="form-row">
+            <div class="field">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" [(ngModel)]="nuevoUsuario.nombre" required>
+            </div>
+            <div class="field">
+              <label for="apellido1">Primer apellido</label>
+              <input type="text" id="apellido1" name="apellido1" [(ngModel)]="nuevoUsuario.apellido1" required>
+            </div>
+            <div class="field">
+              <label for="apellido2">Segundo apellido</label>
+              <input type="text" id="apellido2" name="apellido2" [(ngModel)]="nuevoUsuario.apellido2" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="fechaNacimiento">Fecha de Nacimiento</label><br>
+              <p-calendar type="date" id="fechaNacimiento" appendTo="body" name="fechaNacimiento" [(ngModel)]="nuevoUsuario.fecha_nacimiento"  dateFormat="dd-mm-yy"></p-calendar>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="direccion">Dirección</label>
+              <input type="text" id="direccion" name="direccion" [(ngModel)]="nuevoUsuario.direccion">
+            </div>
+            <div class="field">
+              <label for="ciudad">Ciudad</label>
+              <select id="ciudad" name="ciudad" [(ngModel)]="nuevoUsuario.ciudad" required>
+                <option *ngFor="let ciudad of ciudades" [value]="ciudad">{{ ciudad }}</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="cp">Código Postal</label>
+              <input type="text" id="cp" name="cp" [(ngModel)]="nuevoUsuario.cp" required pattern="^\d{5}$" #cp="ngModel">
+              <div *ngIf="cp.invalid && (cp.dirty || cp.touched)" class="alert alert-danger">
+                Por favor, introduce un código postal válido.
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="telefono">Teléfono</label>
+              <input type="text" id="telefono" name="telefono" [(ngModel)]="nuevoUsuario.telefono" required pattern="^\d{9}$" #telefono="ngModel">
+              <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)" class="alert alert-danger">
+                Por favor, introduce un número de teléfono válido.
+              </div>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" [(ngModel)]="nuevoUsuario.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" #email="ngModel">
+              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                Por favor, introduce un correo electrónico válido.
+              </div>
+            </div>
+            <div class="field">
+              <label for="password">Contraseña</label>
+              <input type="password" id="password" name="password" [(ngModel)]="nuevoUsuario.password" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="biografia">Biografía</label>
+              <textarea id="biografia" name="biografia" [(ngModel)]="nuevoUsuario.biografia"></textarea>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="file" class="custom-file-upload">Foto de perfil</label>
+              <input type="file" id="file" name="file" (change)="onFileSelected($event)" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <p-button label="Crear Usuario" type="submit" [disabled]="!form.valid"></p-button>
+            <p-button label="Cancelar" routerLink="/login"></p-button>
+          </div>
+        </form>
+        <p-toast></p-toast>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+  </body>
+  
